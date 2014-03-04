@@ -31,6 +31,6 @@ To test that everything is working, type ```./gradlew tomcatRun```.
 
 After a few seconds/minutes you see ```Started Tomcat Server``` and on the next line ```The Server is running at http://localhost:8080/spring4template-rest```.
 
-Next start yout browser and navigate to ```http://localhost:8080/spring4template-rest```. You should see the index.html file.
+Next start your browser and navigate to ```http://localhost:8080/spring4template-rest```. You should see the *index.html* file.
 
 The template seems to be working, so it's your turn now: Happy Coding!
