@@ -13,7 +13,7 @@ The template uses [Gradle](http://gradle.org) for dependency management and is b
 
 It also provides the tomcat-plugin (with an embedded tomcat)
 
-In [build.gradle](build.gradle) there is a special section with all the used versions; see at the beginning of the dependencies-section.
+In [build.gradle](build.gradle) there is a special section with all the used versions; look at the beginning of the dependencies-section.
 
 ### HINT:
 You don't need a gradle-installation because the template is using the [gradle-wrapper](http://www.gradle.org/docs/current/userguide/userguide_single.html#gradle_wrapper). But be aware that you have to use **./gradlew** or **gradlew.bat** and not *./gradle* or *gradle.bat*. 
