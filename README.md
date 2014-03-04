@@ -6,10 +6,10 @@ This is a template-project, which uses Spring 4, Spring Security 3 and has a RES
 
 The template uses [Gradle](http://gradle.org) for dependency management and is based on the following libs:
 
-* jackson
-* hibernate
-* h2
-* jsonpath
+* [hibernate](http://hibernate.org/)
+* [jackson](https://github.com/FasterXML/jackson)
+* [jsonpath](https://github.com/jayway/JsonPath)
+* [h2](http://www.h2database.com/)
 
 It also provides the tomcat-plugin (with an embedded tomcat)
 
