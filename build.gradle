@@ -1,3 +1,4 @@
+apply plugin: 'groovy'
 apply plugin: 'war' 
 apply plugin: 'tomcat'
 apply plugin: 'eclipse'
@@ -46,6 +47,7 @@ dependencies {
 	def tomcatVersion = '7.0.52'
 	def jacksonVersion = '2.3.1'
 	def jsonPathVersion = '0.8.1'
+	def groovyVersion = '2.2.2'
 	
 	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
 		   "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
@@ -64,9 +66,9 @@ dependencies {
 	
 	compile 'org.slf4j:slf4j-api:1.7.5'
 	
-    compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
-    compile "org.springframework.security:spring-security-core:${springSecurityVersion}"
-    compile "org.springframework.security:spring-security-config:${springSecurityVersion}"	
+	compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
+	compile "org.springframework.security:spring-security-core:${springSecurityVersion}"
+	compile "org.springframework.security:spring-security-config:${springSecurityVersion}"	
 	
 	// zieht auch hibernate-core, ... 
 	compile 'org.hibernate:hibernate-entitymanager:4.3.1.Final'
@@ -74,6 +76,9 @@ dependencies {
 	compile 'org.springframework.data:spring-data-jpa:1.5.0.RELEASE'
 	compile 'cglib:cglib:2.2.2'
 	
+	compile "org.codehaus.groovy:groovy-all:${groovyVersion}:indy
+	
+	compile "javax.validation:validation-api:1.0.0.GA"
 	//fis compile 'commons-collections:commons-collections:3.2'
 	// fis compile "org.apache.commons:commons-lang3:3.1"
 	// fis compile "joda-time:joda-time:1.6"
@@ -90,11 +95,11 @@ dependencies {
 	// lieber logback statt: runtime "org.slf4j:slf4j-log4j12:1.7.5"
 	
 	runtime "com.h2database:h2:1.3.173"
-    runtime "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
-    runtime "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    runtime "javax.xml.bind:jaxb-api:2.2.9"
+	runtime "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+	runtime "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+	runtime "javax.xml.bind:jaxb-api:2.2.9"
 	
-	//provided 'javax.servlet:javax.servlet-api:3.0.1'
+	providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
 
 	testCompile 'junit:junit:4.+'
 	testCompile "org.springframework:spring-test:${springVersion}"
