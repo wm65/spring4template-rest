@@ -70,17 +70,29 @@ dependencies {
 	compile "org.springframework.security:spring-security-core:${springSecurityVersion}"
 	compile "org.springframework.security:spring-security-config:${springSecurityVersion}"	
 	
-	// zieht auch hibernate-core, ... 
-	compile 'org.hibernate:hibernate-entitymanager:4.3.1.Final'
+	// zieht auch hibernate-core, ...
+	compile 'org.hibernate:hibernate-entitymanager:${hibernateVersion}'
+	
+	// Hibarnate Validator war  4.2.0.Final
+	compile "org.hibernate:hibernate-validator:${hibernateVersion}"
+	
+	// Hibernate Envers
+	compile "org.hibernate:hibernate-envers:${hibernateVersion}"
+	
+	// Hibernate Spatial
+	compile "org.hibernatespatial:hibernate-spatial-oracle:1.1"
+	compile "com.vividsolutions:jts:1.13"
+	
+	compile "javax.validation:validation-api:1.0.0.GA"
 	
 	compile 'org.springframework.data:spring-data-jpa:1.5.0.RELEASE'
 	compile 'cglib:cglib:2.2.2'
 	
-	compile "org.codehaus.groovy:groovy-all:${groovyVersion}:indy
-	
+	compile "com.fasterxml.uuid:java-uuid-generator:3.1.3"
+
 	compile "javax.validation:validation-api:1.0.0.GA"
 	//fis compile 'commons-collections:commons-collections:3.2'
-	// fis compile "org.apache.commons:commons-lang3:3.1"
+	compile "org.apache.commons:commons-lang3:3.1"
 	// fis compile "joda-time:joda-time:1.6"
 	// fis compile "com.oracle:ojdbc6:11.2.0.1"
 	// fis compile "org.hibernate:hibernate-validator:4.2.0.Final"
@@ -88,24 +100,30 @@ dependencies {
 	// fis compile "org.projectlombok:lombok:0.11.4"
 	// fis compile "com.mysema.querydsl:querydsl-apt:${querydslVersion}"
 	// fis compile "com.mysema.querydsl:querydsl-jpa:${querydslVersion}"
-	// fis compile "commons-dbcp:commons-dbcp:1.3"
+	compile "commons-dbcp:commons-dbcp:1.3"
 	// fis compile "commons-pool:commons-pool:1.5.6"
+
+	compile "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+	compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+	compile "javax.xml.bind:jaxb-api:2.2.9"
+
+	// groovy support
+	compile "org.codehaus.groovy:groovy-all:${groovyVersion}:indy"
 	
 	runtime "ch.qos.logback:logback-classic:1.0.13"
 	// lieber logback statt: runtime "org.slf4j:slf4j-log4j12:1.7.5"
 	
 	runtime "com.h2database:h2:1.3.173"
-	runtime "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
-	runtime "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-	runtime "javax.xml.bind:jaxb-api:2.2.9"
 	
 	providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
 
 	testCompile 'junit:junit:4.+'
 	testCompile "org.springframework:spring-test:${springVersion}"
+	testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+	testCompile "org.spockframework:spock-spring:0.7-groovy-2.0"
 	testCompile "org.mockito:mockito-all:1.9.5"
 	testCompile "com.jayway.jsonpath:json-path-assert:${jsonPathVersion}"
-		
+
 }
 
 test {
@@ -125,3 +143,27 @@ uploadArchives {
 	}
 }
 
+/*
+ tomcat {
+	 httpPort = 8080
+	 httpsPort = 8081
+	 enableSSL = true
+ }
+ */
+ 
+ eclipse {
+	 classpath {
+		downloadSources=true
+	 }
+ }
+ 
+ 
+ eclipse.classpath.file {
+	 // Classpath entry for Eclipse which changes the order of classpathentries; otherwise no sources for 3rd party jars are shown
+	 withXml { xml ->
+		 def node = xml.asNode()
+		 node.remove( node.find { it.@path == 'org.eclipse.jst.j2ee.internal.web.container' } )
+		 node.appendNode( 'classpathentry', [ kind: 'con', path: 'org.eclipse.jst.j2ee.internal.web.container', exported: 'true'])
+	 }
+ }
+ 
